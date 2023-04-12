@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Localização do usuário via Geo IP</title>
+  <script>
+        navigator.geolocation.getCurrentPosition(function(posicao) {
+            var url = "http://nominatim.openstreetmap.org/reverse?lat="+posicao.coords.latitude+"&lon="+posicao.coords.longitude+"&format=json&json_callback=preencherDados";
+            var script = document.createElement('script');
+            script.src = url;
+            document.body.appendChild(script);
+        });
+    
+        
+    
+    function preencherDados(dados) {
+      console.log(dados.address.postcode);  
+      console.log(dados.address.city);  
+      console.log(" ")
+      console.log("Outras informações podem ser pegas na variável ADDRESS abaixo")
+      console.log("Por exemplo, para pegar o campo [state] use: dados.address.state")
+      console.log(dados)
+    }
+    </script>
+</head>
+
+<body>
+
+
+
+</body>
+</html>
